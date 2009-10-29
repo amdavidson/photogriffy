@@ -1,0 +1,24 @@
+<% 
+width = nil ; height = nil ;
+if (@fsize[0] >= @fsize[1]) then
+	if (@fsize[0] >= 500) then
+		width = 500
+	else
+		width = @fsize[0]
+	end
+else
+	if (@fsize[1] >= 500) then
+		height = 500
+		width = (( @fsize[0] / @fsize[1].to_f ) * 500).to_i
+	else
+		height = @fsize[1]
+	end
+end
+
+%>
+
+<div class="box">
+	<div class="border" style="width:<%= width %>;">
+		<%= image_tag @fpath , :width => width , :height => height%>
+	</div>
+</div>

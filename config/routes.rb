@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'f/:id', :controller => "flickr", :action => "photo"
 
   map.connect 's/i', :controller => "screenshot", :action => "index"
-  map.connect 's/:id', :controller => "screenshot", :action => "single"
+  map.connect 's/:filename', :controller => "screenshot", :action => "single", :requirements => { :filename => /.*/ }
 
   map.connect 'i/:action', :controller => "info"
 

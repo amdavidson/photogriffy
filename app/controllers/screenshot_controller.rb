@@ -10,7 +10,9 @@ class ScreenshotController < ApplicationController
   end
 
   def single
-    @screenshot = "x"
+    @fpath = "screenshots/" + params[:filename]
+    fabsolute = RAILS_ROOT + "/public/images/screenshots/" + params[:filename]
+    @fsize = IO.read(fabsolute)[0x10..0x18].unpack('NN')
     
     respond_to do |format|
       format.html
