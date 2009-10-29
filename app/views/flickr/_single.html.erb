@@ -1,0 +1,6 @@
+<div class="flickr">
+	<div class="border" style="width:<%= @psizes.width %>;">
+		<%= link_to image_tag(@psizes.source, :alt => @pinfo.title), :controller => "flickr", :action => "photo", :id => @pid %>
+		<p><%= @pinfo.title %></p>
+	</div>
+</div>
