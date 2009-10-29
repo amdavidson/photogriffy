@@ -1,5 +1,7 @@
 class FlickrController < ApplicationController
   require 'flickraw'
+  @@flickr_id = "13827925@N00"
+
 
   def index
     
@@ -11,9 +13,14 @@ class FlickrController < ApplicationController
   
   def photo
     @pid = params[:id]
-		@pinfo = flickr.photos.getInfo :photo_id => @pid
-		getSizes = flickr.photos.getSizes :photo_id => @pid
-	  @psizes = getSizes.find{|m| m.label == "Medium"}
+    begin
+		  @pinfo = flickr.photos.getInfo :photo_id => @pid
+    rescue => e
+      @error = true;
+      @pid = flickr.photos.search(:user_id => @@flickr_id).rand.id
+      @pinfo = flickr.photos.getInfo :photo_id => @pid
+    end
+    @psize = flickr.photos.getSizes(:photo_id => @pid).find{|m| m.label == "Medium"}
 	  
     respond_to do |format|
       format.html
@@ -22,12 +29,10 @@ class FlickrController < ApplicationController
   end
   
   def home
-		photos = flickr.photos.search(:user_id => "13827925@N00")
-		random = photos[rand(photos.size)]
-		@pid = random.id
-		@pinfo = flickr.photos.getInfo :secret => random.secret, :photo_id => @pid
-		getSizes = flickr.photos.getSizes :photo_id => @pid
-	  @psizes = getSizes.find{|m| m.label == "Medium"}
+
+    @pid = flickr.photos.search(:user_id => @@flickr_id).rand.id
+		@pinfo = flickr.photos.getInfo(:photo_id => @pid)
+    @psize = flickr.photos.getSizes(:photo_id => @pid).find{|m| m.label == "Medium"}
 		    
     respond_to do |format|
       format.html

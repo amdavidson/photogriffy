@@ -6,6 +6,16 @@
 <body>
 	<div id="wrapper">
 		<%= yield %>
+	<div id="header">
+		<h1>photogriffy.net</h1>
+		<p>
+			<%= link_to "about", {:controller => "info", :action => "about"}, :alt => "about" %> 
+			<span class="light">|</span> 
+			<%= link_to "reload", request.request_uri, :alt => "reload"%>
+		</p>
+	</div>
+	<div class="meta"></div>
+	<div id="footer">copyright 2009 andrew davidson, all rights reserved</div>
 	</div>
 </body>
 </html>

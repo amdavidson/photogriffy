@@ -1,6 +1,9 @@
-<div class="flickr">
-	<div class="border" style="width:<%= @psizes.width %>;">
-		<%= link_to image_tag(@psizes.source, :alt => @pinfo.title), :controller => "flickr", :action => "photo", :id => @pid %>
+<div class="box">
+	<div class="border" style="width:<%= @psize.width %>;">
+		<%= link_to image_tag(@psize.source, :alt => @pinfo.title), :controller => "flickr", :action => "photo", :id => @pid %>
 		<p><%= @pinfo.title %></p>
 	</div>
+	<% if (@error) then %>
+		<p>requested photo id not found, random photo displayed.</p>
+	<% end %>
 </div>
