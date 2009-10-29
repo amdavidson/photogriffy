@@ -45,6 +45,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 's/i', :controller => "screenshot", :action => "index"
   map.connect 's/:id', :controller => "screenshot", :action => "single"
 
+  map.connect 'i/:action', :controller => "info"
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
