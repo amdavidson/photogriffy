@@ -1,15 +1,6 @@
 class FlickrController < ApplicationController
   require 'flickraw'
   @@flickr_id = "13827925@N00"
-
-
-  def index
-    
-    respond_to do |format|
-      format.html
-      format.xml
-    end
-  end
   
   def photo
     @pid = params[:id]
