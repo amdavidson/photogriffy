@@ -1,0 +1,2 @@
+class ScreenshotController < ApplicationController
+end
